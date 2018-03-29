@@ -38,6 +38,7 @@ public class SimsRunner1 {
 
                         Process process = pb.start();
 
+                        int code = process.waitFor();
                         if (process.isAlive()) {
                             System.err.println("Shouldn't happen");
                             process.destroyForcibly();

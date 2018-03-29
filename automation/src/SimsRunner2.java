@@ -19,7 +19,7 @@ public class SimsRunner2 {
             for (; curr_movement_index < movement_model.length; curr_movement_index++) {
                 for (; curr_hosts_index < hosts_amount.length; curr_hosts_index++) {
                     for (; curr_time_index < time_of_sims.length; curr_time_index++) {
-                        String file_to_process = SimsRunner1.processFiles();
+                        String file_to_process = processFiles();
                         ProcessBuilder pb = new ProcessBuilder(
                                 "./one.sh",
                                 "-b",
@@ -34,6 +34,8 @@ public class SimsRunner2 {
                         System.out.println("¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬");
 
                         Process process = pb.start();
+
+                        int code = process.waitFor();
 
                         if (process.isAlive()) {
                             System.err.println("Shouldn't happen");
@@ -50,5 +52,21 @@ public class SimsRunner2 {
         }
     }
 
+    public static String processFiles() {
+        StringBuilder sb = new StringBuilder("generated_settings/");
+
+        sb.append(protocols[curr_protocol_index].replaceFirst("Router", ""));
+        if (movement_model[curr_movement_index].equals("MapBasedMovement")) {
+            sb.append("_MBM_");
+        } else {
+            sb.append("_SPMBM_");
+        }
+        sb.append(hosts_amount[curr_hosts_index]);
+        sb.append("n_");
+        sb.append(time_of_sims[curr_time_index]);
+        sb.append("s.txt");
+
+        return sb.toString();
+    }
 
 }
