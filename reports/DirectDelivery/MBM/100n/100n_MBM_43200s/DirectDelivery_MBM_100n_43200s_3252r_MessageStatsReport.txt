@@ -1,0 +1,20 @@
+Message stats for scenario DirectDelivery_MBM_100n_43200s_3252r
+sim_time: 43200.0000
+created: 1453
+started: 221
+relayed: 219
+aborted: 2
+dropped: 945
+removed: 0
+delivered: 219
+delivery_prob: 0.1507
+response_prob: 0.0000
+overhead_ratio: 0.0000
+latency_avg: 5979.0365
+latency_med: 4864.0000
+hopcount_avg: 1.0000
+hopcount_med: 1
+buffertime_avg: 14639.6127
+buffertime_med: 16175.0000
+rtt_avg: NaN
+rtt_med: NaN

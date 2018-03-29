@@ -1,0 +1,20 @@
+Message stats for scenario Prophet_SPMBM_100n_43200s_974r
+sim_time: 43200.0000
+created: 1453
+started: 42127
+relayed: 35894
+aborted: 6229
+dropped: 36396
+removed: 0
+delivered: 374
+delivery_prob: 0.2574
+response_prob: 0.0000
+overhead_ratio: 94.9733
+latency_avg: 3193.7647
+latency_med: 2665.0000
+hopcount_avg: 3.0080
+hopcount_med: 3
+buffertime_avg: 639.2523
+buffertime_med: 319.0000
+rtt_avg: NaN
+rtt_med: NaN

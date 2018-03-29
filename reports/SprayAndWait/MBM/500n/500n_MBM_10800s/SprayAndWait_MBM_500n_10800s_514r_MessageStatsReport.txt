@@ -1,0 +1,20 @@
+Message stats for scenario SprayAndWait_MBM_500n_10800s_514r
+sim_time: 10800.0000
+created: 358
+started: 1864
+relayed: 1836
+aborted: 26
+dropped: 103
+removed: 0
+delivered: 92
+delivery_prob: 0.2570
+response_prob: 0.0000
+overhead_ratio: 18.9565
+latency_avg: 3289.9565
+latency_med: 2843.0000
+hopcount_avg: 2.1739
+hopcount_med: 2
+buffertime_avg: 6561.8544
+buffertime_med: 6621.0000
+rtt_avg: NaN
+rtt_med: NaN

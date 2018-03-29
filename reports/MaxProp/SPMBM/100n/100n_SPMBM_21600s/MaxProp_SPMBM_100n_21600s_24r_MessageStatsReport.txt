@@ -1,0 +1,20 @@
+Message stats for scenario MaxProp_SPMBM_100n_21600s_24r
+sim_time: 21600.0000
+created: 723
+started: 23781
+relayed: 20239
+aborted: 3539
+dropped: 17972
+removed: 1987
+delivered: 431
+delivery_prob: 0.5961
+response_prob: 0.0000
+overhead_ratio: 45.9582
+latency_avg: 3847.4640
+latency_med: 3038.0000
+hopcount_avg: 1.6659
+hopcount_med: 2
+buffertime_avg: 473.1979
+buffertime_med: 3.0000
+rtt_avg: NaN
+rtt_med: NaN

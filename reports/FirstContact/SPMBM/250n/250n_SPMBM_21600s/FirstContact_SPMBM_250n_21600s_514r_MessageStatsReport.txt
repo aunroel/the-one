@@ -1,0 +1,20 @@
+Message stats for scenario FirstContact_SPMBM_250n_21600s_514r
+sim_time: 21600.0000
+created: 724
+started: 36422
+relayed: 33574
+aborted: 2842
+dropped: 307
+removed: 33574
+delivered: 171
+delivery_prob: 0.2362
+response_prob: 0.0000
+overhead_ratio: 195.3392
+latency_avg: 4769.0585
+latency_med: 3118.0000
+hopcount_avg: 47.7018
+hopcount_med: 42
+buffertime_avg: 127.6416
+buffertime_med: 59.0000
+rtt_avg: NaN
+rtt_med: NaN

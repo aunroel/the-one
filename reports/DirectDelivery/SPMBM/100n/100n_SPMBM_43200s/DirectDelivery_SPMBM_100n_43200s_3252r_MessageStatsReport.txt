@@ -1,0 +1,20 @@
+Message stats for scenario DirectDelivery_SPMBM_100n_43200s_3252r
+sim_time: 43200.0000
+created: 1453
+started: 787
+relayed: 787
+aborted: 0
+dropped: 959
+removed: 0
+delivered: 787
+delivery_prob: 0.5416
+response_prob: 0.0000
+overhead_ratio: 0.0000
+latency_avg: 5952.5909
+latency_med: 5164.0000
+hopcount_avg: 1.0000
+hopcount_med: 1
+buffertime_avg: 14213.4807
+buffertime_med: 15422.0000
+rtt_avg: NaN
+rtt_med: NaN

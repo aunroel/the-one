@@ -1,0 +1,20 @@
+Message stats for scenario Epidemic_SPMBM_500n_43200s_351r
+sim_time: 43200.0000
+created: 1461
+started: 949694
+relayed: 817542
+aborted: 132077
+dropped: 815187
+removed: 0
+delivered: 250
+delivery_prob: 0.1711
+response_prob: 0.0000
+overhead_ratio: 3269.1680
+latency_avg: 2971.7080
+latency_med: 2104.0000
+hopcount_avg: 21.1480
+hopcount_med: 16
+buffertime_avg: 163.1702
+buffertime_med: 105.0000
+rtt_avg: NaN
+rtt_med: NaN

@@ -1,0 +1,20 @@
+Message stats for scenario FirstContact_SPMBM_100n_10800s_1r
+sim_time: 10800.0000
+created: 357
+started: 5146
+relayed: 4605
+aborted: 539
+dropped: 103
+removed: 4605
+delivered: 69
+delivery_prob: 0.1933
+response_prob: 0.0000
+overhead_ratio: 65.7391
+latency_avg: 2664.9420
+latency_med: 1715.0000
+hopcount_avg: 11.8551
+hopcount_med: 9
+buffertime_avg: 266.2674
+buffertime_med: 125.0000
+rtt_avg: NaN
+rtt_med: NaN

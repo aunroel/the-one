@@ -1,0 +1,20 @@
+Message stats for scenario FirstContact_MBM_250n_43200s_351r
+sim_time: 43200.0000
+created: 1455
+started: 37176
+relayed: 34125
+aborted: 3049
+dropped: 914
+removed: 34125
+delivered: 178
+delivery_prob: 0.1223
+response_prob: 0.0000
+overhead_ratio: 190.7135
+latency_avg: 6380.0056
+latency_med: 5312.0000
+hopcount_avg: 18.9213
+hopcount_med: 18
+buffertime_avg: 366.7890
+buffertime_med: 248.0000
+rtt_avg: NaN
+rtt_med: NaN

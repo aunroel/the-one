@@ -1,0 +1,20 @@
+Message stats for scenario Epidemic_MBM_100n_21600s_24r
+sim_time: 21600.0000
+created: 723
+started: 7214
+relayed: 6156
+aborted: 1057
+dropped: 6196
+removed: 0
+delivered: 94
+delivery_prob: 0.1300
+response_prob: 0.0000
+overhead_ratio: 64.4894
+latency_avg: 3937.2766
+latency_med: 3344.0000
+hopcount_avg: 3.2872
+hopcount_med: 2
+buffertime_avg: 1618.3920
+buffertime_med: 1276.0000
+rtt_avg: NaN
+rtt_med: NaN

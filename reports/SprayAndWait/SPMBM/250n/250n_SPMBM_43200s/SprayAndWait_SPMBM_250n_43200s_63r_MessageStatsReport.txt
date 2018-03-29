@@ -1,0 +1,20 @@
+Message stats for scenario SprayAndWait_SPMBM_250n_43200s_63r
+sim_time: 43200.0000
+created: 1455
+started: 8594
+relayed: 8437
+aborted: 156
+dropped: 7134
+removed: 0
+delivered: 1244
+delivery_prob: 0.8550
+response_prob: 0.0000
+overhead_ratio: 5.7822
+latency_avg: 2820.5941
+latency_med: 2313.0000
+hopcount_avg: 2.1198
+hopcount_med: 2
+buffertime_avg: 7217.5415
+buffertime_med: 6772.0000
+rtt_avg: NaN
+rtt_med: NaN

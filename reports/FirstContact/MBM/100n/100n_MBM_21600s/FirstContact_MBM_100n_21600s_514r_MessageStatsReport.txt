@@ -1,0 +1,20 @@
+Message stats for scenario FirstContact_MBM_100n_21600s_514r
+sim_time: 21600.0000
+created: 723
+started: 4851
+relayed: 4309
+aborted: 541
+dropped: 411
+removed: 4309
+delivered: 68
+delivery_prob: 0.0941
+response_prob: 0.0000
+overhead_ratio: 62.3676
+latency_avg: 3702.8529
+latency_med: 2473.0000
+hopcount_avg: 5.0882
+hopcount_med: 4
+buffertime_avg: 861.4182
+buffertime_med: 559.0000
+rtt_avg: NaN
+rtt_med: NaN

@@ -1,0 +1,20 @@
+Message stats for scenario Prophet_SPMBM_250n_43200s_24r
+sim_time: 43200.0000
+created: 1455
+started: 228419
+relayed: 195569
+aborted: 32828
+dropped: 195173
+removed: 0
+delivered: 275
+delivery_prob: 0.1890
+response_prob: 0.0000
+overhead_ratio: 710.1600
+latency_avg: 3152.3600
+latency_med: 2563.0000
+hopcount_avg: 4.8945
+hopcount_med: 4
+buffertime_avg: 296.2346
+buffertime_med: 132.0000
+rtt_avg: NaN
+rtt_med: NaN
