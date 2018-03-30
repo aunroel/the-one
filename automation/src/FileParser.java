@@ -1,7 +1,11 @@
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FileParser {
 
@@ -146,7 +150,12 @@ public class FileParser {
 
         try {
             if (tmpDir.exists()) {
-                Files.write(Paths.get(path), content.getBytes(), StandardOpenOption.APPEND);
+                Pattern pattern = Pattern.compile("\n");
+                List<String> list = pattern.splitAsStream(content)
+                        .collect(Collectors.toList());
+                Charset charset = Charset.forName("UTF-8");
+
+                Files.write(Paths.get(path), list, charset, StandardOpenOption.APPEND);
             } else {
                 FileOutputStream outputStream = new FileOutputStream(path);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");

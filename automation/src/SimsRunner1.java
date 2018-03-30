@@ -3,7 +3,7 @@ import java.io.*;
 
 public class SimsRunner1 {
 
-    public static int NUMBER_OF_RUNS = 7;
+    public static final int NUMBER_OF_RUNS = 7;
 
     static int[] time_of_sims = {10800, 21600, 43200};
     static int[] hosts_amount = { 100, 250, 500};                                                       // 0-2
