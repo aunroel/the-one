@@ -9,8 +9,7 @@ import java.util.List;
 
 /**
  * <p>Calculates the jump size probability density function. The measure is
- * widely used for characterising human mobility, e.g., in Marta C. Gonzaléz,
- * César A. Hidalgo & Albert-László Barabási, "Understanding individual human
+ * widely used for characterising human mobility, e.g., "Understanding individual human
  * mobility patterns", Nature. 5. June 2008.</p>
  *
  *
