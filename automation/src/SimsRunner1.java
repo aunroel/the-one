@@ -8,8 +8,7 @@ public class SimsRunner1 {
     static int[] time_of_sims = {10800, 21600, 43200};
     static int[] hosts_amount = { 100, 250, 500};                                                       // 0-2
     static String[] movement_model = {"MapBasedMovement"};              // 0-1
-    static String[] protocols = {"EpidemicRouter", "FirstContactRouter", "DirectDeliveryRouter",
-            "MaxPropRouter", "ProphetRouter", "SprayAndWaitRouter"};                                    // 0-5
+    static String[] protocols = {"MaxPropRouter"};                                    // 0-5
 
     static int curr_time_index = 0;
     static int curr_hosts_index = 0;
