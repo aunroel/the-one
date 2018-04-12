@@ -8,13 +8,18 @@ import input.EventQueue;
 import input.EventQueueHandler;
 
 import java.io.Serializable;
+import java.security.KeyPair;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.HashMap;
+
 
 import movement.MapBasedMovement;
 import movement.MovementModel;
 import movement.map.SimMap;
 import routing.MessageRouter;
+import sh.RSA_AES_Encryption;
 
 /**
  * A simulation scenario used for getting and storing the settings of a
@@ -117,6 +122,10 @@ public class SimScenario implements Serializable {
 	private List<UpdateListener> updateListeners;
 	/** Global application event listeners */
 	private List<ApplicationListener> appListeners;
+	/** HashMap of all hosts and their public keys */
+	private HashMap<String, String> publicKeys;
+	/** RSA_AES utility object */
+	private RSA_AES_Encryption rsa_aes_encryption;
 
 	static {
 		DTNSim.registerForReset(SimScenario.class.getCanonicalName());
@@ -152,6 +161,8 @@ public class SimScenario implements Serializable {
 		this.updateListeners = new ArrayList<UpdateListener>();
 		this.appListeners = new ArrayList<ApplicationListener>();
 		this.eqHandler = new EventQueueHandler();
+		this.publicKeys = new HashMap<String, String>();
+		this.rsa_aes_encryption = new RSA_AES_Encryption();
 
 		/* TODO: check size from movement models */
 		s.setNameSpace(MovementModel.MOVEMENT_MODEL_NS);
@@ -389,16 +400,27 @@ public class SimScenario implements Serializable {
 				this.simMap = ((MapBasedMovement)mmProto).getMap();
 			}
 
+			List<DTNHost> tempHosts = new ArrayList<DTNHost>();
+
 			// creates hosts of ith group
 			for (int j=0; j<nrofHosts; j++) {
 				ModuleCommunicationBus comBus = new ModuleCommunicationBus();
+				KeyPair kp = rsa_aes_encryption.generateRSAKeyPair();
 
 				// prototypes are given to new DTNHost which replicates
 				// new instances of movement model and message router
 				DTNHost host = new DTNHost(this.messageListeners,
 						this.movementListeners,	gid, interfaces, comBus,
-						mmProto, mRouterProto);
-				hosts.add(host);
+						mmProto, mRouterProto, kp);
+				publicKeys.put(
+						host.getName(),
+						Base64.getMimeEncoder().encodeToString(kp.getPublic().getEncoded()));
+				tempHosts.add(host);
+			}
+
+			for (int j = 0; j < tempHosts.size(); j++) {
+				tempHosts.get(j).setKeysMap(publicKeys);
+				hosts.add(tempHosts.get(j));
 			}
 		}
 	}

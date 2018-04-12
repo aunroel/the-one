@@ -1,3 +1,7 @@
+package src;
+
+import src.SimsRunner1;
+
 import java.io.*;
 
 public class SimsRunner2 {
