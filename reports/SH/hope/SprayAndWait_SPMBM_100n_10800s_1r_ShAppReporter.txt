@@ -1,8 +1,0 @@
-Messages stats for scenario SprayAndWait_SPMBM_100n_10800s_1r
-sim_time: 10800.0000
-messages sent: 300
-messages received: 162
-responses sent: 162
-responses received: 90
-message delivery prob: 0.5400
-response delivery prob: 0.5556

@@ -1,4 +1,4 @@
-package sh;
+package src;
 
 
 import javax.crypto.Cipher;
@@ -13,8 +13,8 @@ import java.util.Base64;
 
 public class RSA_AES_Encryption {
 
-    public PublicKey getPublicKeyFromArray(byte[] key) {
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(key);
+    public PublicKey getPublicKeyFromArray(byte[] stringKey) {
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(stringKey);
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(spec);

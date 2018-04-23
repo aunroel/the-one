@@ -1,0 +1,23 @@
+Messages stats for scenario locality_P2P_24
+sim_time: 43200.0000
+messages sent: 7500
+messages received: 466
+responses sent: 466
+responses received: 335
+message delivery prob: 0.0621
+response delivery prob: 0.7189
+
+1st most active masked node::o2525
+1st node masked amount: 8.0
+2nd most active masked node::o1515
+2nd node masked amount: 7.0
+3rd most active masked node::p357
+3rd node masked amount: 6.0
+
+1st most active real node::p357
+1st node real amount: 6.0
+2nd most active real node::p439
+2nd node real amount: 5.0
+3rd most active real node::p391
+3rd node real amount: 5.0
+origins changed: 4410

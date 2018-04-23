@@ -21,6 +21,8 @@ import movement.map.SimMap;
 import routing.MessageRouter;
 import sh.RSA_AES_Encryption;
 
+import javax.crypto.SecretKey;
+
 /**
  * A simulation scenario used for getting and storing the settings of a
  * simulation run.
@@ -123,7 +125,7 @@ public class SimScenario implements Serializable {
 	/** Global application event listeners */
 	private List<ApplicationListener> appListeners;
 	/** HashMap of all hosts and their public keys */
-	private HashMap<String, String> publicKeys;
+	private HashMap<DTNHost, byte[]> publicKeys;
 	/** RSA_AES utility object */
 	private RSA_AES_Encryption rsa_aes_encryption;
 
@@ -161,7 +163,7 @@ public class SimScenario implements Serializable {
 		this.updateListeners = new ArrayList<UpdateListener>();
 		this.appListeners = new ArrayList<ApplicationListener>();
 		this.eqHandler = new EventQueueHandler();
-		this.publicKeys = new HashMap<String, String>();
+		this.publicKeys = new HashMap<DTNHost, byte[]>();
 		this.rsa_aes_encryption = new RSA_AES_Encryption();
 
 		/* TODO: check size from movement models */
@@ -401,6 +403,8 @@ public class SimScenario implements Serializable {
 			}
 
 			List<DTNHost> tempHosts = new ArrayList<DTNHost>();
+			List<DTNHost> attackers = new ArrayList<>();
+			List<DTNHost> all_hosts = new ArrayList<>();
 
 			// creates hosts of ith group
 			for (int j=0; j<nrofHosts; j++) {
@@ -412,15 +416,38 @@ public class SimScenario implements Serializable {
 				DTNHost host = new DTNHost(this.messageListeners,
 						this.movementListeners,	gid, interfaces, comBus,
 						mmProto, mRouterProto, kp);
-				publicKeys.put(
-						host.getName(),
-						Base64.getMimeEncoder().encodeToString(kp.getPublic().getEncoded()));
+				if (gid.equalsIgnoreCase("p")) {
+					publicKeys.put(
+							host,
+							kp.getPublic().getEncoded());
+				}
+				if (gid.startsWith("o")) {
+					attackers.add(host);
+				}
+
+				all_hosts.add(host);
+
 				tempHosts.add(host);
 			}
 
 			for (int j = 0; j < tempHosts.size(); j++) {
 				tempHosts.get(j).setKeysMap(publicKeys);
+				for (int k = j + 1; k < tempHosts.size(); k++) {
+					SecretKey secretKey = rsa_aes_encryption.generateAESKey();
+					tempHosts.get(j).getSecretKeys().put(tempHosts.get(k), secretKey);
+					tempHosts.get(k).getSecretKeys().put(tempHosts.get(j), secretKey);
+				}
+			}
+
+			for (int j = 0; j < tempHosts.size(); j++) {
 				hosts.add(tempHosts.get(j));
+				hosts.get(j).setHosts(all_hosts);
+			}
+			for (int j = 0; j < attackers.size(); j++) {
+				attackers.get(j).setAttackers(attackers);
+			}
+			for (int j = 0; j < hosts.size(); j++) {
+				hosts.get(j).setHosts(all_hosts);
 			}
 		}
 	}

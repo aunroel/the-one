@@ -4,11 +4,7 @@
  */
 package core;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A message that is created at a node or passed between nodes.
@@ -79,7 +75,7 @@ public class Message implements Comparable<Message> {
 		this.appID = null;
 
 		Message.nextUniqueId++;
-		addNodeOnPath(from);
+//		addNodeOnPath(from);
 	}
 
 	/**
@@ -123,12 +119,16 @@ public class Message implements Comparable<Message> {
 		return this.size;
 	}
 
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	/**
 	 * Adds a new node on the list of nodes this message has passed
 	 * @param node The node to add
 	 */
 	public void addNodeOnPath(DTNHost node) {
-		this.path.add(node);
+//		this.path.add(node);
 	}
 
 	/**
@@ -144,7 +144,8 @@ public class Message implements Comparable<Message> {
 	 * @return the amount of hops this message has passed
 	 */
 	public int getHopCount() {
-		return this.path.size() -1;
+//		return this.path.size() -1;
+		return 0;
 	}
 
 	/**
@@ -188,6 +189,10 @@ public class Message implements Comparable<Message> {
 	 */
 	public double getReceiveTime() {
 		return this.timeReceived;
+	}
+
+	public void setTimeCreated(double timeCreated) {
+		this.timeCreated = timeCreated;
 	}
 
 	/**
@@ -360,4 +365,7 @@ public class Message implements Comparable<Message> {
 		this.appID = appID;
 	}
 
+	public void setFrom(DTNHost from) {
+		this.from = from;
+	}
 }

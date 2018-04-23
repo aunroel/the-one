@@ -1,7 +1,7 @@
 ## Scenario settings
 
 # A name to identify the present scenario
-Scenario.name = SprayAndWait_SPMBM_100n_10800s_%%MovementModel.rngSeed%%r
+Scenario.name = encrypted_P2P_%%MovementModel.rngSeed%%
 
 # Whether to create connections among nodes
 Scenario.simulateConnections = true
@@ -24,56 +24,53 @@ btInterface.transmitRange = 10
 
 # Common settings for all groups
 # How many groups of nodes to be created (at least one)
-Scenario.nrofHostGroups = 1
-
-# Define new application
-shMessenger.type = EncryptedMessenger
-shMessenger.interval = 3000
-shMessenger.destinationRange = 0, 99
-shMessenger.messageSize = 500
-shMessenger.responseSize = 500
-
-Group.nrofApplications = 1
-Group.application1 = shMessenger
-
+Scenario.nrofHostGroups = 4
 
 Group.movementModel = ShortestPathMapBasedMovement
 Group.router = SprayAndWaitRouter
-## Group.bufferSize = 5M
+Group.bufferSize = 50M
 Group.waitTime = 0, 60
 # All nodes have the bluetooth interface
 Group.nrofInterfaces = 1
 Group.interface1 = btInterface
 # Walking speeds
 Group.speed = 0.5, 1.5
-# Message TTL of 300 minutes (5 hours)
-Group.msgTtl = 300
+# Message TTL of 60 minutes
+Group.msgTtl = 60
 
-Group.nrofHosts = 500
+
+Group1.nrofHosts = 350
+Group1.groupID = s
+
+Group2.nrofHosts = 150
+Group2.groupID = p
+
+Group3.nrofHosts = 25
+Group3.groupID = o1
+
+
+Group4.nrofHosts = 25
+Group4.groupID = o2
+
+
+# Define new application
+shMessenger.type = Encrypted_P2P_Messenger
+shMessenger.interval = 850
+
+Group.nrofApplications = 1
+Group.application1 = shMessenger
+
 
 # Identifier for the nodes in this group
-Group.groupID = s
 
 # Number of nodes in the simulation
 # Probability for each POI:
-#Group.pois = 1, 0.2, 2, 0.05
-#PointsOfInterest.poiFile1 = data/standrews/StAcompsci.wkt
-#PointsOfInterest.poiFile2 = data/standrews/StAunion.wkt
+Group2.pois = 1, 0.3, 2, 0.3
+Group3.pois = 1, 1.0
+Group4.pois = 2, 1.0
+PointsOfInterest.poiFile1 = data/standrews/StAcompsci.wkt
+PointsOfInterest.poiFile2 = data/standrews/StAunion.wkt
 
-## Message creation parameters
-# How many event generators
-Events.nrof = 1
-# Class of the first event generator
-Events1.class = MessageEventGenerator
-# Creation interval in sec (one new message every 25 to 35 sec)
-Events1.interval = 25, 35
-# Message sizes (500 kB - 1 MB)
-Events1.size = 500k, 1M
-# Range of message source/destination addresses
-# Note: This shouldn’t be greater than # of nodes
-Events1.hosts = 0,99
-# Message ID prefix
-Events1.prefix = M
 
 ## Movement model settings
 # seed for movement models' pseudo random number generator (default = 0)
@@ -91,27 +88,19 @@ MapBasedMovement.mapFile1 = data/standrews/StAroads.wkt
 ## Reports - all report names have to be valid report classes
 
 # How many reports to load
-Report.nrofReports = 3
+Report.nrofReports = 1
 Report.warmup = 180
 # default directory of reports (can be overridden per Report with output setting)
-Report.reportDir = reports/SH/hope/
+Report.reportDir = reports/SH/140022544/cryptography/p2p
 
 # Report classes to load
-Report.report1 = MessageStatsReport
-Report.report2 = DeliveredMessagesReport
-Report.report3 = ShAppReporter
+Report.report1 = P2P_Reporter
 
 ## Default settings for some routers settings
 ProphetRouter.secondsInTimeUnit = 30
 SprayAndWaitRouter.nrofCopies = 6
 SprayAndWaitRouter.binaryMode = true
 MaxPropRouter.probSetMaxSize = 15
-
-## Default settings for some movement settings
-## ClusterMovement.clusterRange = 100
-## ClusterMovement.clusterCenter = 100, 100
-## LinearFormation.startLocation = 0
-## LinearFormation.endLocation = 0
 
 ## Optimization settings -- these affect the speed of the simulation
 ## see World class for details.

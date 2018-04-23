@@ -161,4 +161,8 @@ public class SprayAndWaitRouter extends ActiveRouter {
 	public SprayAndWaitRouter replicate() {
 		return new SprayAndWaitRouter(this);
 	}
+
+	public int getInitialNrofCopies() {
+		return initialNrofCopies;
+	}
 }

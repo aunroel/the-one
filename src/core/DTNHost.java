@@ -4,6 +4,7 @@
  */
 package core;
 
+import java.io.Serializable;
 import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,29 +16,40 @@ import movement.Path;
 import routing.MessageRouter;
 import routing.util.RoutingInfo;
 
+import javax.crypto.SecretKey;
+
 import static core.Constants.DEBUG;
 
 /**
  * A DTN capable host.
  */
-public class DTNHost implements Comparable<DTNHost> {
+public class DTNHost implements Comparable<DTNHost>, Serializable{
 	private static int nextAddress = 0;
 	private int address;
 
-	private Coord location; 	// where is the host
-	private Coord destination;	// where is it going
+	private transient Coord location; 	// where is the host
+	private transient Coord destination;	// where is it going
 
-	private MessageRouter router;
-	private MovementModel movement;
-	private Path path;
+	private transient MessageRouter router;
+	private transient MovementModel movement;
+	private transient Path path;
 	private double speed;
 	private double nextTimeToMove;
 	private String name;
 	private List<MessageListener> msgListeners;
 	private List<MovementListener> movListeners;
 	private List<NetworkInterface> net;
-	private ModuleCommunicationBus comBus;
-	private HashMap<String, String> publicKeys;
+	private transient ModuleCommunicationBus comBus;
+	private HashMap<DTNHost, byte[]> publicKeys;
+	private HashMap<DTNHost, SecretKey> secretKeyMap;
+	private List<DTNHost> attackers;
+	private List<String> myMessages;
+	private int msgsPerTimePeriod;
+	private double probationStarted;
+	private double penaltyTimeStarted;
+	private List<DTNHost> hosts;
+
+
 	private KeyPair keyPair;
 
 	static {
@@ -65,6 +77,13 @@ public class DTNHost implements Comparable<DTNHost> {
 		this.name = groupId+address;
 		this.net = new ArrayList<NetworkInterface>();
 		this.keyPair = kp;
+		this.secretKeyMap = new HashMap<>();
+		this.myMessages = new ArrayList<>();
+		this.msgsPerTimePeriod = 0;
+		this.probationStarted = SimClock.getTime();
+		this.penaltyTimeStarted = 0;
+		this.attackers = new ArrayList<>();
+		this.hosts = new ArrayList<>();
 
 		for (NetworkInterface i : interf) {
 			NetworkInterface ni = i.replicate();
@@ -96,7 +115,7 @@ public class DTNHost implements Comparable<DTNHost> {
 		}
 	}
 
-	public void setKeysMap(HashMap<String, String> keys) {
+	public void setKeysMap(HashMap<DTNHost, byte[]> keys) {
 		this.publicKeys = keys;
 	}
 
@@ -555,7 +574,53 @@ public class DTNHost implements Comparable<DTNHost> {
 		return keyPair;
 	}
 
-	public HashMap<String, String> getPublicKeys() {
+	public HashMap<DTNHost, byte[]> getPublicKeys() {
 		return publicKeys;
+	}
+
+	public HashMap<DTNHost, SecretKey> getSecretKeys() {return secretKeyMap;}
+
+	public List<String> getMyMessages() {
+		return myMessages;
+	}
+
+	public int getMsgsPerTimePeriod() {
+		return msgsPerTimePeriod;
+	}
+
+	public void setMsgsPerTimePeriod(int msgsPerTimePeriod) {
+		this.msgsPerTimePeriod = msgsPerTimePeriod;
+	}
+
+	public double getProbationStarted() {
+		return probationStarted;
+	}
+
+	public void setProbationStarted(double probationStarted) {
+		this.probationStarted = probationStarted;
+	}
+
+	public double getPenaltyTimeStarted() {
+		return penaltyTimeStarted;
+	}
+
+	public void setPenaltyTimeStarted(double penaltyTimeStarted) {
+		this.penaltyTimeStarted = penaltyTimeStarted;
+	}
+
+	public List<DTNHost> getAttackers() {
+		return attackers;
+	}
+
+	public void setAttackers(List<DTNHost> attackers) {
+		this.attackers = attackers;
+	}
+
+	public List<DTNHost> getHosts() {
+		return hosts;
+	}
+
+	public void setHosts(List<DTNHost> hosts) {
+		this.hosts = hosts;
 	}
 }
